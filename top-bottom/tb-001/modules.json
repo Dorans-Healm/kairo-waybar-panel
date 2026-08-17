@@ -1,0 +1,243 @@
+{
+  "group/middle-left": {
+      "orientation": "horizontal",
+      "modules": ["pulseaudio"],
+      "tooltip": false
+  },
+
+  "group/corner-left": {
+      "orientation": "horizontal",
+      "modules": ["custom/notification", "clock", "custom/pacman", "tray"],
+      "tooltip": false
+  },
+
+  "group/left": {
+      "orientation": "horizontal",
+      "modules": ["custom/colorpicker", "custom/printscreen"],
+      "tooltip": false
+  },
+
+  "group/right": {
+      "orientation": "horizontal",
+      "modules": ["group/expand-performance", "custom/endpoint", "bluetooth", "network", "battery", "power-profiles-daemon"],
+      "tooltip": false
+  },
+
+  "group/expand-middle-left": {
+      "orientation": "horizontal",
+      "drawer": {
+          "transition-duration": 600,
+          "transition-right-to-left": true,
+          "click-to-reveal": true
+      },
+      "modules": ["custom/left-arrow", "group/middle-left"],
+      "tooltip": false
+  },
+
+  "group/expand-performance": {
+      "orientation": "horizontal",
+      "drawer": {
+          "transition-duration": 600,
+          "transition-right-to-left": true,
+          "click-to-reveal": true
+      },
+      "modules": ["custom/left-arrow", "cpu", "memory", "temperature"],
+      "tooltip": false
+  },
+
+  "custom/notification": {
+    "tooltip": false,
+    "format": "{icon}",
+    "format-icons": {
+      "notification": "<span foreground='red'><sup></sup></span>",
+      "none": "",
+      "dnd-notification": "<span foreground='red'><sup></sup></span>",
+      "dnd-none": "",
+      "inhibited-notification": "<span foreground='red'><sup></sup></span>",
+      "inhibited-none": "",
+      "dnd-inhibited-notification": "<span foreground='red'><sup></sup></span>",
+      "dnd-inhibited-none": ""
+    },
+    "return-type": "json",
+    "exec-if": "which swaync-client",
+    "exec": "swaync-client -swb",
+    "on-click": "swaync-client -t -sw",
+    "on-click-right": "swaync-client -d -sw",
+    "escape": true
+  },
+
+  "clock": {
+      "format": "{:%d/%m %I:%M:%S %p} ",
+      "interval": 1,   
+      "tooltip-format": "<tt>{calendar}</tt>",
+      "calendar": {
+          "format": {
+              "today": "<span color='#fAfBfC'><b>{}</b></span>"
+          }
+      },
+      "actions": {
+          "on-click-right": "shift_down",
+          "on-click": "shift_up"
+      }
+  },
+
+  "custom/pacman": {
+      "format": "  {}",
+      "interval": 30,   
+      "exec": "checkupdates | wc -l",
+      "exec-if": "exit 0",
+      "on-click": "kitty sh -c 'sudo pacman -Syu; echo Done - Press enter to exit; read'; pkill -SIGRTMIN+8 waybar",
+      "signal": 8,
+      "tooltip": false
+  },
+
+  "tray": {
+      "icon-size": 14,
+      "spacing": 10
+  },
+
+  "custom/printscreen": {
+      "format": "",
+      "on-click": "grim -g \"$(slurp)\" - | satty --filename - --copy-command wl-copy",
+      "tooltip-format": "Screenshot",
+      "tooltip": true
+  },
+
+  "custom/colorpicker": {
+      "format": "",
+      "return-type": "json",
+      "interval": "once",
+      "on-click": "hyprpicker -a",
+      "signal": 1,
+      "tooltip-format": "Color Picker",
+      "tooltip": true
+  },
+
+  "pulseaudio": {
+      "format": "{icon} {volume}%  {format_source}",
+      "format-bluetooth": " {volume}% {format_source}",
+      "format-bluetooth-muted": "󰂲 {format_source}",
+      "format-muted": "󰸈  {format_source}",
+      "format-source": "󰍬 {volume}%",
+      "format-source-muted": "󰍭 ",
+      "format-icons": {
+          "headphone": "",
+          "hands-free": "",
+          "headset": "",
+          "phone": "",
+          "portable": "",
+          "default": ["", "", " "]
+      },
+      "on-click": "amixer set Master toggle",
+      "on-click-right": "amixer set Capture toggle",
+      "tooltip": false
+  },
+
+  "sway/window": {
+      "format": "<span font='20'></span>",
+      "on-click": "pavucontrol",
+      "on-click-right": "easyeffects",
+      "tooltip": false
+  },
+
+  "sway/workspaces": {
+      "format": "{icon} <sup><span size='100%'>{name}</span></sup>",
+      "format-icons": {
+          "focused": "󱨇",
+          "default": "",
+          "persistent": ""
+      },
+      "persistent-workspaces": {
+          "1": ["eDP-1"],
+          "2": ["DP-1"],
+          "3": ["eDP-1"],
+          "4": ["DP-1"],
+          "5": ["eDP-1"],
+          "6": ["DP-1"]
+      },
+      "tooltip": false
+  },
+
+  "network": {
+      "format-wifi": "{signalStrength}%  ",
+      "format-ethernet": "🖧",
+      "format-disconnected": "",
+      "tooltip-format-disconnected": "Error",
+      "tooltip-format-wifi": "{essid} ({signalStrength}%)  ",
+      "tooltip-format-ethernet": "{ifname} 🖧"
+  },
+
+  "cpu": {
+      "format": "{usage}% ",
+      "interval": 30,
+      "tooltip": true
+  },
+
+  "memory": {
+      "format": "{used:0.2f} ",
+      "tooltip": true
+  },
+
+  "temperature": {
+      "format": "{temperatureC}°C ",
+      "critical-threshold": 80
+  },
+
+  "bluetooth": {
+      "format-on": "󰂯",
+      "format-off": "BT-off",
+      "format-disabled": "󰂲",
+      "format-connected-battery": "{device_battery_percentage}% 󰂯",
+      "format-alt": "{device_alias} 󰂯",
+      "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
+      "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
+      "tooltip-format-enumerate-connected": "{device_alias}\n{device_address}",
+      "tooltip-format-enumerate-connected-battery": "{device_alias}\n{device_address}\n{device_battery_percentage}%",
+      "on-click-right": "blueman-manager"
+  }, 
+
+  "battery": {
+      "interval":30,
+      "states": {
+          "good": 95,
+          "warning": 30,
+          "critical": 20
+      },
+      "format": "{capacity}% {icon}",
+      "format-charging": "{capacity}% 󰂄",
+      "format-plugged": "{capacity}% ",
+      "format-alt": "{time} {icon}",
+      "format-icons": [
+          "󰁻", "󰁼", "󰁾", "󰂀", "󰂂", "󰁹"
+      ]
+  },
+
+  "power-profiles-daemon": {
+    "format": "{icon}",
+    "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
+    "tooltip": true,
+    "format-icons": {
+        "default": "󰾅",
+        "performance": "󰓅",
+        "balanced": "󰾅",
+        "power-saver": "󰾆"
+    }
+  },
+
+  "custom/power": {
+      "format": "",
+      "on-click": "wlogout",
+      "on-click-right": "$HOME/.config/waybar/scripts/position_change.sh",
+      "tooltip": false
+  },
+
+  "custom/endpoint":{
+      "format": "|",
+      "tooltip": false
+  },
+
+  "custom/left-arrow": {
+      "format": "",
+      "tooltip": false
+  }
+}

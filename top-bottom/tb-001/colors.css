@@ -1,0 +1,21 @@
+/* Auto-generated from environment variables */
+
+/* Backgrounds and deep shadows */
+@define-color dark0 rgb(0, 0, 0);
+@define-color dark1 rgb(80, 80, 80);
+@define-color dark-bg rgb(26, 26, 26);
+
+/* Mid-tones and UI elements */
+@define-color white0 rgb(160, 160, 160);
+@define-color white1 rgb(220, 220, 220);
+
+/* Highlights and Primary Text */
+@define-color light0 rgb(235, 235, 235);
+@define-color light1 rgb(245, 245, 245);
+@define-color light2 rgb(255, 255, 255);
+
+/* Accent Colors */
+@define-color accent-blue rgb(216, 222, 233);
+@define-color accent-green rgb(163, 190, 140);
+@define-color accent-red rgb(191, 97, 106);
+@define-color accent-yellow rgb(235, 203, 139);

@@ -1,0 +1,27 @@
+{
+    "reload_style_on_change": true,
+
+    "layer": "top",
+    "position": "top",
+    "width": 1920,
+    
+    "modules-left": [
+        "group/corner-left",
+        "group/left"
+    ],
+    "modules-center": [
+        "group/expand-middle-left",
+        "custom/endpoint",
+        "sway/window",
+        "custom/endpoint",
+        "sway/workspaces"
+    ],
+    "modules-right": [
+        "group/right",
+        "custom/power"
+    ],
+
+    "include": [
+      "$HOME/.config/waybar/modules.json"
+    ]
+}
