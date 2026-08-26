@@ -1,0 +1,288 @@
+@import "colors.css";
+
+
+* {
+  font-size: 16px;
+  font-family: "JetBrainsMono Nerd Font";
+}
+
+window#waybar {
+  all: unset;
+  background: #000000;
+}
+
+tooltip {
+  border: 1px solid @light2;
+  background-color: @dark-bg;
+  background: alpha(@dark0, .8);
+}
+
+tooltip label {
+  color: @white1;
+}
+
+/* Expandables */
+#expand-performance {
+  margin-bottom: 5px;
+}
+
+#custom-expand-config {
+  color: alpha(@light2, 0.2);
+  text-shadow: 0px 0px 2px alpha(@dark0, 0.7);
+  transition: all .3s ease;
+}
+
+#custom-expand-config:hover {
+  color: alpha(@light2, 0.2);
+  text-shadow: 0px 0px 2px alpha(@light2, 0.5);
+}
+
+/* Groups */
+.modules-left,
+.modules-center,
+.modules-right {
+  padding: 0;
+  margin: 5px 0;
+}
+
+/* Left Modules */
+#custom-notification {
+  margin-bottom: 20px;
+}
+
+#clock {
+  margin-bottom: 15px;
+}
+
+#custom-pacman {
+  margin-bottom: 15px;
+}
+
+#custom-notification,
+#clock,
+#custom-pacman,
+#tray {
+  padding: 15px 0;
+  color: @white0;
+  transition: all .3s ease;
+}
+
+#custom-notification:hover,
+#clock:hover,
+#custom-pacman:hover {
+  color: @light1;
+  transition: all .3s ease;
+  text-shadow: 0px 0px 2px alpha(@white1, 1);
+}
+
+#tray menu * {
+  padding: 0 5px;
+  transition: all .3s ease;
+}
+
+#tray menu separator {
+  padding: 0 5px;
+  transition: all .3s ease;
+}
+
+#custom-colorpicker,
+#custom-printscreen {
+  margin: 10px 0;
+  color: @white0;
+  transition: all .3s ease;
+}
+
+#custom-colorpicker:hover,
+#custom-printscreen:hover {
+  color: @light1;
+  transition: all .3s ease;
+  text-shadow: 0px 0px 2px alpha(@white1, 1);
+}
+
+/* Middle Modules */
+#window {
+  padding: 5px 15px;
+  color: @accent-blue;
+  text-shadow: 0px 0px 2px alpha(@light1, 1);
+}
+
+#workspaces {
+  padding: 5px 0;
+}
+
+#workspaces button {
+  all: unset;
+  padding: 5px 0;
+  color: alpha(@dark1, .8);
+  transition: all .5s ease;
+}
+
+#workspaces button:hover {
+  color: alpha(@white1, .8);
+  text-shadow: 0px 0px 2px alpha(@light1, 1);
+  border: none;
+  transition: all .5s ease;
+}
+
+#workspaces button.focused {
+  color: alpha(@light1, .8);
+  border: none;
+}
+
+#workspaces button.empty {
+  color: alpha(@dark1, .8);
+  transition: all .5s ease;
+}
+
+#workspaces button.empty:hover {
+  color: alpha(@white1, .8);
+  border: none;
+  transition: all .5s ease;
+}
+
+#workspaces button.empty.focused {
+  color: alpha(@light1, .8);
+  border: none;
+}
+
+#pulseaudio,
+#custom-volume,
+#custom-mic {
+  margin: 15px 0 10px 0;
+  background-color: transparent;
+  color: @white0;
+  text-shadow: 0px 0px 2px @accent-green;
+  transition: all .3s ease;
+}
+
+#pulseaudio:hover,
+#custom-volume:hover,
+#custom-mic:hover {
+  background-color: transparent;
+  color: @light1;
+  text-shadow: 0px 0px 2px alpha(@white1, 1);
+  transition: all .3s ease;
+}
+
+#pulseaudio.muted,
+#custom-volume.muted,
+#custom-mic.muted {
+  color: @accent-red;
+  text-shadow: 0px 0px 2px @accent-red;
+  transition: all .3s ease;
+}
+
+/* Right Modules */
+#memory {
+  margin-top: 10px;
+}
+
+#temperature {
+  margin-top: 10px;
+}
+
+#bluetooth {
+  padding: 10px 0;
+  transition: all .3s ease;
+}
+
+#network {
+  padding: 10px 0;
+  transition: all .3s ease;
+}
+
+#power-profiles-daemon {
+  margin-top: 15px;
+  padding: 5px 0;
+  transition: all .3s ease;
+}
+
+#battery {
+  padding: 10px 0;
+  text-shadow: 0px 0px 2px @accent-green;
+  background-color: transparent;
+  transition: all .3s ease;
+}
+
+#battery.charging {
+  color: @light0;
+  text-shadow: 0px 0px 2px @light0;
+}
+
+#battery.warning:not(.charging) {
+  color: @accent-yellow;
+  text-shadow: 0px 0px 2px @accent-yellow;
+}
+
+#battery.critical:not(.charging) {
+  color: @accent-red;
+  text-shadow: 0px 0px 2px @accent-red;
+  animation-name: blink;
+  animation-duration: 0.5s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+#cpu,
+#memory,
+#temperature {
+  padding: 5px 0;
+}
+
+#bluetooth,
+#battery,
+#network,
+#cpu,
+#memory,
+#temperature,
+#power-profiles-daemon {
+  color: @white0;
+}
+
+#bluetooth:hover,
+#network:hover,
+#battery:hover,
+#battery.charging:hover,
+#battery.warning:not(.charging):hover,
+#battery.critical:not(.charging):hover,
+#cpu:hover,
+#memory:hover,
+#temperature:hover,
+#power-profiles-daemon:hover {
+  color: @light1;
+  transition: all .3s ease;
+  text-shadow: 0px 0px 2px alpha(@white1, 1);
+}
+
+#custom-power {
+  color: @white0;
+  padding: 15px 0;
+  transition: .5s;
+}
+
+#custom-power:hover {
+  color: @white1;
+  text-shadow: 0px 0px 2px alpha(@light1, 1);
+  transition: all .5s ease;
+}
+
+/* Utils */
+#custom-left-arrow {
+  color: alpha(@dark1, 1);
+  padding: 5px 0;
+  text-shadow: 0px 0px 2px alpha(@light1, 1);
+  transition: all .3s ease;
+}
+
+#custom-left-arrow:hover {
+  color: alpha(@white0, .8);
+  text-shadow: 0px 0px 2px alpha(@light1, 1);
+}
+
+#custom-endpoint {
+  font-size: 12px;
+  color: alpha(@white0, .8);
+  margin: 5px 0;
+  text-shadow: 0px 0px 2px alpha(@light1, 1);
+}
